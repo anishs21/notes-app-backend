@@ -2,16 +2,19 @@ version: '3.8'
 
 services:
   backend:
-    build:
-      context: ./notes-app-backend
-      dockerfile: Dockerfile
+    image: anishaaaa21/notes_backend:v1
     ports:
       - "3001:3001"
-    environment:
-      - PORT=3001
-      - MONGO_URI=mongodb://mongo:27017/notesdb
+    env_file: .env
+    restart: always
     depends_on:
       - mongo
+
+  frontend:
+    image: anishaaaa21/notes_frontend:v1
+    ports:
+      - "8080:80"
+    restart: always
 
   mongo:
     image: mongo
@@ -19,6 +22,7 @@ services:
       - "27017:27017"
     volumes:
       - mongo-data:/data/db
+    restart: always
 
 volumes:
   mongo-data:
