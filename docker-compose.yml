@@ -11,7 +11,7 @@ services:
       - mongo
 
   frontend:
-    image: anishaaaa21/notes_frontend:v1
+    image: anishaaaa21/notes_frontend:latest
     ports:
       - "8080:80"
     restart: always
